@@ -27,9 +27,9 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
           });
         },
         children: [
-          IntroPage(images: Image.asset('assets/images/intro1.png')),
-          IntroPage(images: Image.asset('assets/images/intro2.png')),
-          IntroPage(images: Image.asset('assets/images/intro3.png')),
+          IntroPage(images: Image.asset('assets/images/firsticon.png')),
+          IntroPage(images: Image.asset('assets/images/firsticon.png')),
+          IntroPage(images: Image.asset('assets/images/firsticon.png')),
         ],
       ),
       Container(

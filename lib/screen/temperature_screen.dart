@@ -1,5 +1,6 @@
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
+import 'package:belajar_flutter/widget/detail_monitor.dart';
 import 'package:belajar_flutter/widget/monitor.dart';
 import 'package:flutter/material.dart';
 
@@ -64,8 +65,10 @@ class TemperatureScreen extends StatelessWidget {
                               scale: 25)))
                 ],
               ),
-              const SizedBox(height: 100),
-              const Monitor()
+              const SizedBox(height: 80),
+              const Monitor(),
+              const SizedBox(height: 50),
+              const DetailMonitor()
             ],
           ),
         ),

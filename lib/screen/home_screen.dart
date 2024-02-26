@@ -1,3 +1,5 @@
+import 'package:belajar_flutter/screen/ph_screen.dart';
+import 'package:belajar_flutter/screen/temperature_screen.dart';
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
 import 'package:belajar_flutter/widget/menu_monitoring.dart';
@@ -36,19 +38,43 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     appMonitoring(
-                      context: context,
-                      text: const AppText(text: "pH Monitor",color: whiteColor, fontSize: 16),
-                      detailText: const AppText(text: "Details Setting", color: greyColor, fontSize: 12),
-                      ontap: () {},
-                      ontapbutton: (){},
-                      image: Image.asset("assets/icons/icononoff.png", scale: 25)),
+                        context: context,
+                        text: const AppText(
+                            text: "pH Monitor",
+                            color: whiteColor,
+                            fontSize: 16),
+                        detailText: const AppText(
+                            text: "Details Setting",
+                            color: greyColor,
+                            fontSize: 12),
+                        ontap: () {
+                          Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                            return const PhScreen();
+                          }));
+                        },
+                        ontapbutton: () {},
+                        image: Image.asset("assets/icons/icononoff.png",
+                            scale: 30)),
                     appMonitoring(
                       context: context,
-                      text: const AppText(text: "Suhu Monitor", color: whiteColor, fontSize: 16),
-                      detailText: const AppText(text: "Details Setting",color: greyColor,fontSize: 12),
-                      ontap: () {},
-                      ontapbutton: (){},
-                      image:Image.asset("assets/icons/icononoff.png", scale: 25),
+                      text: const AppText(
+                          text: "Temp Monitor",
+                          color: whiteColor,
+                          fontSize: 16),
+                      detailText: const AppText(
+                          text: "Details Setting",
+                          color: greyColor,
+                          fontSize: 12),
+                      ontap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                            return const TemperatureScreen();
+                          }));
+                      },
+                      ontapbutton: () {},
+                      image:
+                          Image.asset("assets/icons/icononoff.png", scale: 30),
                     ),
                   ],
                 )

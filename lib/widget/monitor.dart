@@ -1,10 +1,13 @@
 import 'package:belajar_flutter/utils/colors.dart';
+import 'package:belajar_flutter/widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class Monitor extends StatelessWidget {
+  final String textMonitor;
+
   const Monitor({
-    super.key,
+    super.key, required this.textMonitor,
   });
 
   @override
@@ -16,24 +19,52 @@ class Monitor extends StatelessWidget {
         boxShadow: [
           BoxShadow(color: blueColor, blurRadius: 100, spreadRadius: 15),
         ],
-        color: blackColor,
+        color: darkgreyColor3,
         shape: BoxShape.circle,
       ),
       child: SleekCircularSlider(
+        initialValue: 0,
         appearance: CircularSliderAppearance(
-          startAngle: 90,
-            size: 200,
+            startAngle: 90,
+            size: 220,
             customColors: CustomSliderColors(
               trackColor: darkgreyColor,
               dotColor: whiteColor,
-              progressBarColor: purpleColor,
+              progressBarColors: [purpleColor, blueColor, purpleColor],
             ),
             customWidths: CustomSliderWidths(
               trackWidth: 10,
               progressBarWidth: 12,
-              handlerSize: 4,
+              handlerSize: 6,
             )),
         onChange: (value) {},
+        innerWidget: (double percentage) {
+          return Container(
+            margin: const EdgeInsets.all(30),
+            decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(color: blackColor, blurRadius: 20, spreadRadius: 8),
+              ],
+              color: darkgreyColor3,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AppText(
+                    text: "${percentage.toInt()}",
+                    color: whiteColor,
+                    fontSize: 40),
+                const SizedBox(width: 5),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 30),
+                  child: AppText(text: textMonitor, color: whiteColor, fontSize: 20),
+                ),
+              ],
+            )),
+          );
+        },
       ),
     );
   }

@@ -13,3 +13,4 @@ const greyColor = Color(0xFF867AB1);
 
 // Gradient
 const darkgreyColor1 = Color(0xFF0B132F);
+const darkgreyColor3 = Color.fromRGBO(21, 29, 60, 1);

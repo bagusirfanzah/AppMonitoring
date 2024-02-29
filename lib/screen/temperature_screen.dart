@@ -1,5 +1,6 @@
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
+import 'package:belajar_flutter/widget/button.dart';
 import 'package:belajar_flutter/widget/detail_monitor.dart';
 import 'package:belajar_flutter/widget/monitor.dart';
 import 'package:flutter/material.dart';
@@ -46,23 +47,8 @@ class TemperatureScreen extends StatelessWidget {
                           fontSize: 13)
                     ],
                   ),
-                  InkWell(
-                      onTap: () {},
-                      child: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: const BoxDecoration(
-                              color: whiteColor,
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [
-                                  blueColor,
-                                  purpleColor,
-                                ],
-                              )),
-                          child: Image.asset("assets/icons/icononoff.png",
-                              scale: 25)))
+                  Button(image: Image.asset("assets/icons/icononoff.png", scale: 25,)),
+                  
                 ],
               ),
               const SizedBox(height: 80),

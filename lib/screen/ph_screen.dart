@@ -57,7 +57,9 @@ class PhScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 80),
-              const Monitor(),
+              const Monitor(
+                textMonitor: "pH",
+              ),
               const SizedBox(height: 50),
               const DetailMonitor()
             ],

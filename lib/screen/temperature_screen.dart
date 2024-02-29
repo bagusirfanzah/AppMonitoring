@@ -66,7 +66,9 @@ class TemperatureScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 80),
-              const Monitor(),
+              const Monitor(
+                textMonitor: "°C",
+              ),
               const SizedBox(height: 50),
               const DetailMonitor()
             ],

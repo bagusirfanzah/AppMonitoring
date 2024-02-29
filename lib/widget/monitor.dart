@@ -17,7 +17,7 @@ class Monitor extends StatelessWidget {
       margin: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
         boxShadow: [
-          BoxShadow(color: blueColor, blurRadius: 100, spreadRadius: 15),
+          BoxShadow(color: blueColor, blurRadius: 100),
         ],
         color: darkgreyColor3,
         shape: BoxShape.circle,
@@ -26,7 +26,7 @@ class Monitor extends StatelessWidget {
         initialValue: 0,
         appearance: CircularSliderAppearance(
             startAngle: 90,
-            size: 220,
+            size: 200,
             customColors: CustomSliderColors(
               trackColor: darkgreyColor,
               dotColor: whiteColor,
@@ -43,7 +43,7 @@ class Monitor extends StatelessWidget {
             margin: const EdgeInsets.all(30),
             decoration: const BoxDecoration(
               boxShadow: [
-                BoxShadow(color: blackColor, blurRadius: 20, spreadRadius: 8),
+                BoxShadow(color: blackColor, blurRadius: 20, spreadRadius: 5),
               ],
               color: darkgreyColor3,
               shape: BoxShape.circle,

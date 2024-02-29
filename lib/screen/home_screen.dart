@@ -37,40 +37,38 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    appMonitoring(
-                        context: context,
+                    AppMonitoring(
                         text: const AppText(
                             text: "pH Monitor",
                             color: whiteColor,
-                            fontSize: 16),
+                            fontSize: 14),
                         detailText: const AppText(
                             text: "Details Setting",
                             color: greyColor,
-                            fontSize: 12),
+                            fontSize: 10),
                         ontap: () {
                           Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
+                              MaterialPageRoute(builder: (context) {
                             return const PhScreen();
                           }));
                         },
                         ontapbutton: () {},
                         image: Image.asset("assets/icons/icononoff.png",
                             scale: 30)),
-                    appMonitoring(
-                      context: context,
+                    AppMonitoring(
                       text: const AppText(
                           text: "Temp Monitor",
                           color: whiteColor,
-                          fontSize: 16),
+                          fontSize: 14),
                       detailText: const AppText(
                           text: "Details Setting",
                           color: greyColor,
-                          fontSize: 12),
+                          fontSize: 10),
                       ontap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                            return const TemperatureScreen();
-                          }));
+                          return const TemperatureScreen();
+                        }));
                       },
                       ontapbutton: () {},
                       image:

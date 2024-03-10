@@ -26,7 +26,7 @@ class PhScreen extends StatelessWidget {
                       },
                       child:
                           Image.asset("assets/icons/iconback.png", scale: 15)),
-                  Image.asset("assets/icons/iconmenu.png", scale: 15)
+                  const Icon(Icons.refresh, color: whiteColor, size: 25)
                 ],
               ),
               const SizedBox(height: 20),
@@ -39,12 +39,14 @@ class PhScreen extends StatelessWidget {
                       AppText(
                           text: "PH Monitoring",
                           color: whiteColor,
-                          fontSize: 20),
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal),
                       SizedBox(height: 5),
                       AppText(
                           text: "Details Setting",
                           color: greyColor,
-                          fontSize: 13)
+                          fontSize: 13,
+                          fontWeight: FontWeight.normal)
                     ],
                   ),
                   Button(
@@ -59,7 +61,10 @@ class PhScreen extends StatelessWidget {
                 textMonitor: "pH",
               ),
               const SizedBox(height: 50),
-              const DetailMonitor()
+              const DetailMonitor(
+                text: "PH Status",
+                textStatus: "Normal",
+              )
             ],
           ),
         ),

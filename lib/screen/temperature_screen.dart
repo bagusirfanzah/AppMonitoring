@@ -26,7 +26,7 @@ class TemperatureScreen extends StatelessWidget {
                       },
                       child:
                           Image.asset("assets/icons/iconback.png", scale: 15)),
-                  Image.asset("assets/icons/iconmenu.png", scale: 15)
+                  const Icon(Icons.refresh, color: whiteColor, size: 25)
                 ],
               ),
               const SizedBox(height: 20),
@@ -39,16 +39,21 @@ class TemperatureScreen extends StatelessWidget {
                       AppText(
                           text: "Temperature Monitoring",
                           color: whiteColor,
-                          fontSize: 20),
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal),
                       SizedBox(height: 5),
                       AppText(
                           text: "Details Setting",
                           color: greyColor,
-                          fontSize: 13)
+                          fontSize: 13,
+                          fontWeight: FontWeight.normal)
                     ],
                   ),
-                  Button(image: Image.asset("assets/icons/icononoff.png", scale: 25,)),
-                  
+                  Button(
+                      image: Image.asset(
+                    "assets/icons/icononoff.png",
+                    scale: 25,
+                  )),
                 ],
               ),
               const SizedBox(height: 80),
@@ -56,7 +61,10 @@ class TemperatureScreen extends StatelessWidget {
                 textMonitor: "°C",
               ),
               const SizedBox(height: 50),
-              const DetailMonitor()
+              const DetailMonitor(
+                text: "Temperature Status",
+                textStatus: "Normal",
+              )
             ],
           ),
         ),

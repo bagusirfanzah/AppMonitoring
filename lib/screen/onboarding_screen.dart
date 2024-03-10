@@ -18,7 +18,17 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(children: [
+      // body: SafeArea(
+      //   child: PageView.builder(
+      //     scrollDirection: Axis.vertical,
+      //     itemCount: 3,
+      //     itemBuilder: (context, index) {
+      //       return Container();
+      //     },
+
+      // )),
+        body: Stack(
+          children: [
       PageView(
         controller: _controller,
         onPageChanged: (index) {
@@ -91,6 +101,7 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
             ],
           ))
-    ]));
+    ])
+    );
   }
 }

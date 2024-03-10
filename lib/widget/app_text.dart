@@ -4,7 +4,8 @@ class AppText extends StatelessWidget {
   final String text;
   final Color color;
   final double fontSize;
-  const AppText({super.key, required this.text, required this.color, required this.fontSize});
+  final FontWeight fontWeight;
+  const AppText({super.key, required this.text, required this.color, required this.fontSize, required this.fontWeight});
 
 
   @override
@@ -14,6 +15,7 @@ class AppText extends StatelessWidget {
       style: TextStyle(
         color: color,
        fontSize: fontSize
+      
       ),
     );
   }

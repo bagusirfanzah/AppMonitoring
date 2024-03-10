@@ -52,14 +52,18 @@ class Monitor extends StatelessWidget {
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppText(
-                    text: "${percentage.toInt()}",
-                    color: whiteColor,
-                    fontSize: 40),
-                const SizedBox(width: 5),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  child: AppText(text: textMonitor, color: whiteColor, fontSize: 20),
+                  padding: const EdgeInsets.only(left: 15),
+                  child: AppText(
+                      text: "${percentage.toInt()}",
+                      color: whiteColor,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(width: 10),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40),
+                  child: AppText(text: textMonitor, color: greyColor2, fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ],
             )),

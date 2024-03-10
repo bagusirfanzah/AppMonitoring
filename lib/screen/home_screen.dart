@@ -15,22 +15,22 @@ class HomeScreen extends StatefulWidget {
 class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Scaffold(
-            backgroundColor: Colors.black,
-            body: Column(
+    return Scaffold(
+      backgroundColor: blackColor,
+      body: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            child: Column(
               children: [
                 const AppText(
-                    text: "SMART MONITORING", color: whiteColor, fontSize: 16),
+                    text: "SMART MONITORING", color: whiteColor, fontSize: 16, fontWeight: FontWeight.normal),
                 const SizedBox(height: 15),
                 Row(
                   children: [
                     Image.asset("assets/icons/icondevice.png", scale: 15),
                     const SizedBox(width: 10),
                     const AppText(
-                        text: 'Parameters', color: whiteColor, fontSize: 16),
+                        text: 'Parameters', color: whiteColor, fontSize: 16, fontWeight: FontWeight.normal),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -41,11 +41,13 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                         text: const AppText(
                             text: "pH Monitor",
                             color: whiteColor,
-                            fontSize: 14),
+                            fontSize: 14,
+                          fontWeight: FontWeight.normal),
                         detailText: const AppText(
                             text: "Details Setting",
                             color: greyColor,
-                            fontSize: 10),
+                            fontSize: 10,
+                            fontWeight: FontWeight.normal),
                         ontap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
@@ -59,11 +61,13 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                       text: const AppText(
                           text: "Temp Monitor",
                           color: whiteColor,
-                          fontSize: 14),
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal),
                       detailText: const AppText(
                           text: "Details Setting",
                           color: greyColor,
-                          fontSize: 10),
+                          fontSize: 10,
+                          fontWeight: FontWeight.normal),
                       ontap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -77,8 +81,8 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                   ],
                 )
               ],
-            )),
-      ),
+            ),
+          )),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:belajar_flutter/screen/home_screen.dart';
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
 import 'package:belajar_flutter/widget/button.dart';
@@ -6,6 +7,8 @@ import 'package:belajar_flutter/widget/monitor.dart';
 import 'package:flutter/material.dart';
 
 class PhScreen extends StatelessWidget {
+  static const routeName = 'ph_screen';
+
   const PhScreen({super.key});
 
   @override
@@ -22,7 +25,7 @@ class PhScreen extends StatelessWidget {
                 children: [
                   InkWell(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                       },
                       child:
                           Image.asset("assets/icons/iconback.png", scale: 15)),

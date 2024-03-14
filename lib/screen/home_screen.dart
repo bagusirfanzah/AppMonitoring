@@ -6,6 +6,7 @@ import 'package:belajar_flutter/widget/menu_monitoring.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = "/home_screen";
   const HomeScreen({super.key});
 
   @override
@@ -49,10 +50,7 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                             fontSize: 10,
                             fontWeight: FontWeight.normal),
                         ontap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const PhScreen();
-                          }));
+                          Navigator.pushReplacementNamed(context, PhScreen.routeName);
                         },
                         ontapbutton: () {},
                         image: Image.asset("assets/icons/icononoff.png",
@@ -69,10 +67,7 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                           fontSize: 10,
                           fontWeight: FontWeight.normal),
                       ontap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const TemperatureScreen();
-                        }));
+                        Navigator.pushReplacementNamed(context, TemperatureScreen.routeName);
                       },
                       ontapbutton: () {},
                       image:

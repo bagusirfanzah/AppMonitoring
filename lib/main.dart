@@ -1,4 +1,5 @@
 import 'package:belajar_flutter/screen/onboarding_screen.dart';
+import 'package:belajar_flutter/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -10,10 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      home: OnBoardingScreen(),
+      home: const OnBoardingScreen(),
+      routes: Routes.route,
     );
   }
 }

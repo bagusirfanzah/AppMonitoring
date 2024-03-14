@@ -8,6 +8,8 @@ import 'package:belajar_flutter/widget/app_text.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatefulWidget {
+  static const routeName = "/oboarding_screen";
+  
   const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
@@ -70,10 +72,7 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
                     const SizedBox(height: 25),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const HomeScreen();
-                        }));
+                        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                       },
                       child: Container(
                         padding:const EdgeInsets.symmetric(vertical: 12),

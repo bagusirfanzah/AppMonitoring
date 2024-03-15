@@ -1,4 +1,5 @@
 import 'package:belajar_flutter/utils/colors.dart';
+import 'package:belajar_flutter/widget/app_text.dart';
 import 'package:flutter/material.dart';
 
 class DetailMonitor extends StatelessWidget {
@@ -6,12 +7,15 @@ class DetailMonitor extends StatelessWidget {
   final String textStatus;
   const DetailMonitor({
     super.key,
-    required this.text, required this.textStatus,
+    required this.text,
+    required this.textStatus,
   });
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
+      width: size.width/2.3,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           border: Border.all(color: darkgreyColor),
@@ -24,15 +28,17 @@ class DetailMonitor extends StatelessWidget {
           )),
       child: Column(
         children: <Widget>[
-          Text(
-            text,
-            style: const TextStyle(color: greyColor),
-          ),
+          AppText(
+              text: text,
+              color: greyColor2,
+              fontSize: 16,
+              fontWeight: FontWeight.bold),
           const SizedBox(height: 15),
-          Text(
-            textStatus,
-            style: const TextStyle(color: greyColor),
-          )
+          AppText(
+              text: textStatus,
+              color: whiteColor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold),
         ],
       ),
     );

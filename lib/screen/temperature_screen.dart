@@ -63,10 +63,19 @@ class TemperatureScreen extends StatelessWidget {
               const Monitor(
                 textMonitor: "°C",
               ),
-              const SizedBox(height: 50),
-              const DetailMonitor(
-                text: "Temperature Status",
-                textStatus: "Normal",
+              const SizedBox(height: 100),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                   DetailMonitor(
+                    text: "Temperature Status",
+                    textStatus: "Normal",
+                  ),
+                  DetailMonitor(
+                    text: "Current Status",
+                    textStatus: "36°C",
+                  ),
+                ],
               )
             ],
           ),

@@ -63,11 +63,21 @@ class PhScreen extends StatelessWidget {
               const Monitor(
                 textMonitor: "pH",
               ),
-              const SizedBox(height: 50),
-              const DetailMonitor(
+              const SizedBox(height: 100),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                   DetailMonitor(
                 text: "PH Status",
                 textStatus: "Normal",
+              ),
+               DetailMonitor(
+                text: "Current Status",
+                textStatus: "7 pH",
               )
+                ],
+              ),
+              
             ],
           ),
         ),

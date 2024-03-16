@@ -1,15 +1,22 @@
 import 'package:belajar_flutter/screen/home_screen.dart';
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
-import 'package:belajar_flutter/widget/button.dart';
+// import 'package:belajar_flutter/widget/button.dart';
 import 'package:belajar_flutter/widget/detail_monitor.dart';
 import 'package:belajar_flutter/widget/monitor.dart';
 import 'package:flutter/material.dart';
 
-class TemperatureScreen extends StatelessWidget {
+class TemperatureScreen extends StatefulWidget {
   static const routeName = 'temperature_screen';
 
   const TemperatureScreen({super.key});
+
+  @override
+  State<TemperatureScreen> createState() => _TemperatureScreenState();
+}
+
+class _TemperatureScreenState extends State<TemperatureScreen> {
+  bool isClick = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,8 @@ class TemperatureScreen extends StatelessWidget {
                 children: [
                   InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                        Navigator.pushReplacementNamed(
+                            context, HomeScreen.routeName);
                       },
                       child:
                           Image.asset("assets/icons/iconback.png", scale: 15)),
@@ -52,22 +60,48 @@ class TemperatureScreen extends StatelessWidget {
                           fontWeight: FontWeight.normal)
                     ],
                   ),
-                  Button(
-                      image: Image.asset(
-                    "assets/icons/icononoff.png",
-                    scale: 25,
-                  )),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        isClick = !isClick;
+                      });
+                    },
+                    child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 7, horizontal: 7),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: isClick
+                                ? const LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      blueColor,
+                                      purpleColor,
+                                    ],
+                                  )
+                                : const LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      darkgreyColor,
+                                      lightgreyColor,
+                                    ],
+                                  )),
+                        child: Image.asset(
+                          "assets/icons/icononoff.png",
+                          scale: 25,
+                        )),
+                  )
                 ],
               ),
               const SizedBox(height: 80),
-              const Monitor(
-                textMonitor: "°C",
-              ),
+              Monitor(isClick: isClick, textMonitor: "°C"),
               const SizedBox(height: 100),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   DetailMonitor(
+                  DetailMonitor(
                     text: "Temperature Status",
                     textStatus: "Normal",
                   ),

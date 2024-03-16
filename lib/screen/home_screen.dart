@@ -38,7 +38,7 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    AppMonitoring(
+                    MenuMonitoring(
                         text: const AppText(
                             text: "pH Monitor",
                             color: whiteColor,
@@ -55,7 +55,7 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                         ontapbutton: () {},
                         image: Image.asset("assets/icons/icononoff.png",
                             scale: 30)),
-                    AppMonitoring(
+                    MenuMonitoring(
                       text: const AppText(
                           text: "Temp Monitor",
                           color: whiteColor,

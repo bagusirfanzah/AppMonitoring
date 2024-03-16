@@ -1,15 +1,16 @@
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
-import 'package:belajar_flutter/widget/button.dart';
 import 'package:flutter/material.dart';
 
-class AppMonitoring extends StatefulWidget {
+// import 'package:belajar_flutter/widget/button.dart';
+
+class MenuMonitoring extends StatefulWidget {
   final dynamic image;
   final AppText text;
   final AppText detailText;
   final VoidCallback ontap;
   final VoidCallback ontapbutton;
-  const AppMonitoring(
+  const MenuMonitoring(
       {super.key,
       required this.text,
       required this.detailText,
@@ -18,11 +19,11 @@ class AppMonitoring extends StatefulWidget {
       required this.image});
 
   @override
-  State<AppMonitoring> createState() => _AppMonitoringState();
+  State<MenuMonitoring> createState() => _MenuMonitoringState();
 }
 
-class _AppMonitoringState extends State<AppMonitoring> {
-  bool isOn = false;
+class _MenuMonitoringState extends State<MenuMonitoring> {
+  bool isClick = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,11 +34,13 @@ class _AppMonitoringState extends State<AppMonitoring> {
         height: 120,
         width: size.width / 2.3,
         decoration: BoxDecoration(
-            gradient: isOn
+            gradient: isClick
                 ? const LinearGradient(
                     begin: Alignment.bottomRight,
                     end: Alignment.topLeft,
                     colors: [
+                      darkgreyColor,
+                      blackColor,
                       blackColor,
                     ],
                   )
@@ -45,7 +48,6 @@ class _AppMonitoringState extends State<AppMonitoring> {
                     begin: Alignment.bottomRight,
                     end: Alignment.topLeft,
                     colors: [
-                      darkgreyColor,
                       blackColor,
                       blackColor,
                     ],
@@ -56,6 +58,7 @@ class _AppMonitoringState extends State<AppMonitoring> {
               ),
               alignment: Alignment.topLeft,
               scale: 20,
+              opacity: 90,
             ),
             color: blackColor,
             borderRadius: BorderRadius.circular(15),
@@ -70,7 +73,40 @@ class _AppMonitoringState extends State<AppMonitoring> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [widget.text, widget.detailText],
                 ),
-                isOn ? Button(image: widget.image) : Button(image: widget.image)
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      isClick = !isClick;
+                    });
+                  },
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 7, horizontal: 7),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: isClick
+                              ? const LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    blueColor,
+                                    purpleColor,
+                                  ],
+                                )
+                              : const LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    darkgreyColor,
+                                    lightgreyColor,
+                                  ],
+                                )),
+                      child: Image.asset(
+                        "assets/icons/icononoff.png",
+                        scale: 25,
+                      )),
+                )
+                // Button( onTap: (){},image: widget.image) : Button( onTap: () {},image: widget.image)
               ],
             )
           ],

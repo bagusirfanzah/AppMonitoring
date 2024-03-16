@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class Monitor extends StatelessWidget {
-  final String textMonitor;
-
   const Monitor({
     super.key,
+    required this.isClick, 
     required this.textMonitor,
   });
+
+  final bool isClick;
+  final String textMonitor;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +39,11 @@ class Monitor extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(20),
               margin: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 boxShadow: [
-                  BoxShadow(color: blueColor, blurRadius: 100),
+                  BoxShadow(
+                      color: isClick ? blueColor : blackColor,
+                      blurRadius: 100),
                 ],
                 color: darkgreyColor3,
                 shape: BoxShape.circle,
@@ -52,7 +56,11 @@ class Monitor extends StatelessWidget {
                     customColors: CustomSliderColors(
                       trackColor: lightgreyColor,
                       dotColor: whiteColor,
-                      progressBarColors: [purpleColor, blueColor, purpleColor],
+                      progressBarColors: [
+                        purpleColor,
+                        blueColor,
+                        purpleColor
+                      ],
                     ),
                     customWidths: CustomSliderWidths(
                       trackWidth: 10,
@@ -66,7 +74,9 @@ class Monitor extends StatelessWidget {
                     decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                            color: blackColor, blurRadius: 20, spreadRadius: 5),
+                            color: blackColor,
+                            blurRadius: 20,
+                            spreadRadius: 5),
                       ],
                       color: darkgreyColor3,
                       shape: BoxShape.circle,
@@ -78,32 +88,36 @@ class Monitor extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: AppText(
-                              text: "${percentage.toInt()}",
-                              color: whiteColor,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 5),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 35),
-                          child: AppText(
-                              text: textMonitor,
-                              color: greyColor2,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 30),
+                              child: AppText(
+                                  text: "${percentage.toInt()}",
+                                  color: isClick
+                                      ? whiteColor
+                                      : greyColor2,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(width: 5),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 35),
+                              child: AppText(
+                                  text: textMonitor,
+                                  color: greyColor2,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 25),
                         Container(
                           height: 10,
                           width: 10,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.green
+                            color:
+                                isClick ? Colors.green : Colors.red,
                           ),
                         )
                       ],

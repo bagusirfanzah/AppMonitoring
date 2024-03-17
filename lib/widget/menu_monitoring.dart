@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // import 'package:belajar_flutter/widget/button.dart';
 
 class MenuMonitoring extends StatefulWidget {
+  final ImageProvider imageBackground;
   final dynamic image;
   final AppText text;
   final AppText detailText;
@@ -16,7 +17,8 @@ class MenuMonitoring extends StatefulWidget {
       required this.detailText,
       required this.ontap,
       required this.ontapbutton,
-      required this.image});
+      required this.imageBackground,
+      this.image});
 
   @override
   State<MenuMonitoring> createState() => _MenuMonitoringState();
@@ -39,7 +41,7 @@ class _MenuMonitoringState extends State<MenuMonitoring> {
                     begin: Alignment.bottomRight,
                     end: Alignment.topLeft,
                     colors: [
-                      darkgreyColor,
+                      darkgreyColor3,
                       blackColor,
                       blackColor,
                     ],
@@ -52,20 +54,26 @@ class _MenuMonitoringState extends State<MenuMonitoring> {
                       blackColor,
                     ],
                   ),
-            image: const DecorationImage(
-              image: AssetImage(
-                "assets/icons/iconph.png",
-              ),
-              alignment: Alignment.topLeft,
-              scale: 20,
-              opacity: 90,
-            ),
             color: blackColor,
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: darkgreyColor)),
+            border: Border.all(color: isClick? darkblueColor : darkgreyColor )),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            isClick
+                ? Image(
+                    image: widget.imageBackground,
+                    height: 60,
+                    width: 60,
+                    color: blueColor,
+                  )
+                : Image(
+                    image: widget.imageBackground,
+                    height: 60,
+                    width: 60,
+                  ),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -103,7 +111,7 @@ class _MenuMonitoringState extends State<MenuMonitoring> {
                                 )),
                       child: Image.asset(
                         "assets/icons/icononoff.png",
-                        scale: 25,
+                        scale: 30,
                       )),
                 )
                 // Button( onTap: (){},image: widget.image) : Button( onTap: () {},image: widget.image)

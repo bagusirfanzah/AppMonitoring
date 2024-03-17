@@ -39,6 +39,7 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     MenuMonitoring(
+                      imageBackground: const AssetImage("assets/icons/iconph.png"),
                         text: const AppText(
                             text: "pH Monitor",
                             color: whiteColor,
@@ -56,6 +57,7 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                         image: Image.asset("assets/icons/icononoff.png",
                             scale: 30)),
                     MenuMonitoring(
+                      imageBackground: const AssetImage("assets/icons/iconsuhu.png"),
                       text: const AppText(
                           text: "Temp Monitor",
                           color: whiteColor,

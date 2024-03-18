@@ -32,12 +32,14 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                 children: [
                   InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, HomeScreen.routeName);
+                        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                       },
                       child:
                           Image.asset("assets/icons/iconback.png", scale: 15)),
-                  const Icon(Icons.refresh, color: whiteColor, size: 25)
+                  InkWell(
+                      onTap: () {},
+                      child: const Icon(Icons.refresh,
+                          color: whiteColor, size: 25))
                 ],
               ),
               const SizedBox(height: 20),
@@ -98,14 +100,16 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
               const SizedBox(height: 80),
               Monitor(isClick: isClick, textMonitor: "°C"),
               const SizedBox(height: 100),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   DetailMonitor(
+                    isClick: isClick,
                     text: "Temperature Status",
                     textStatus: "Normal",
                   ),
                   DetailMonitor(
+                    isClick: isClick,
                     text: "Current Status",
                     textStatus: "36°C",
                   ),

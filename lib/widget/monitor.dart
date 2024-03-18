@@ -56,11 +56,14 @@ class Monitor extends StatelessWidget {
                     customColors: CustomSliderColors(
                       trackColor: lightgreyColor,
                       dotColor: whiteColor,
-                      progressBarColors: [
+                      progressBarColors: isClick? <Color>[
                         purpleColor,
                         blueColor,
                         purpleColor
-                      ],
+                      ] : <Color>[
+                        darkblueColor,
+                        darkblueColor,
+                      ] ,
                     ),
                     customWidths: CustomSliderWidths(
                       trackWidth: 10,

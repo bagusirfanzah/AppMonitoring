@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class DetailMonitor extends StatelessWidget {
   final String text;
   final String textStatus;
+   final bool isClick;
+   
   const DetailMonitor({
     super.key,
     required this.text,
-    required this.textStatus,
+    required this.textStatus, required this.isClick,
   });
 
   @override
@@ -18,7 +20,7 @@ class DetailMonitor extends StatelessWidget {
       width: size.width/2.3,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          border: Border.all(color: darkgreyColor),
+          border: Border.all(color: isClick? darkblueColor : darkgreyColor),
           borderRadius: BorderRadius.circular(20),
           gradient: const LinearGradient(
             transform: GradientRotation(4),
@@ -31,12 +33,12 @@ class DetailMonitor extends StatelessWidget {
           AppText(
               text: text,
               color: greyColor2,
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: FontWeight.bold),
           const SizedBox(height: 15),
           AppText(
               text: textStatus,
-              color: whiteColor,
+              color: isClick? whiteColor : blackColor,
               fontSize: 16,
               fontWeight: FontWeight.bold),
         ],

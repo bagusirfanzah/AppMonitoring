@@ -53,7 +53,6 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                         ontap: () {
                           Navigator.pushReplacementNamed(context, PhScreen.routeName);
                         },
-                        ontapbutton: () {},
                         image: Image.asset("assets/icons/icononoff.png",
                             scale: 30)),
                     MenuMonitoring(
@@ -71,7 +70,7 @@ class _MyWidgetState extends State<HomeScreen> with TickerProviderStateMixin {
                       ontap: () {
                         Navigator.pushReplacementNamed(context, TemperatureScreen.routeName);
                       },
-                      ontapbutton: () {},
+                      
                       image:
                           Image.asset("assets/icons/icononoff.png", scale: 30),
                     ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class DetailMonitor extends StatelessWidget {
   final String text;
   final String textStatus;
-   final bool isClick;
+  final bool isClick;
    
   const DetailMonitor({
     super.key,

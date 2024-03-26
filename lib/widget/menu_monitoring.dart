@@ -1,5 +1,6 @@
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
+import 'package:belajar_flutter/widget/button.dart';
 import 'package:flutter/material.dart';
 
 // import 'package:belajar_flutter/widget/button.dart';
@@ -10,13 +11,11 @@ class MenuMonitoring extends StatefulWidget {
   final AppText text;
   final AppText detailText;
   final VoidCallback ontap;
-  final VoidCallback ontapbutton;
   const MenuMonitoring(
       {super.key,
       required this.text,
       required this.detailText,
       required this.ontap,
-      required this.ontapbutton,
       required this.imageBackground,
       this.image});
 
@@ -26,6 +25,13 @@ class MenuMonitoring extends StatefulWidget {
 
 class _MenuMonitoringState extends State<MenuMonitoring> {
   bool isClick = false;
+
+  void isOn() {
+    setState(() {
+      isClick = !isClick;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -56,7 +62,7 @@ class _MenuMonitoringState extends State<MenuMonitoring> {
                   ),
             color: blackColor,
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: isClick? darkblueColor : darkgreyColor )),
+            border: Border.all(color: isClick ? darkblueColor : darkgreyColor)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,40 +87,12 @@ class _MenuMonitoringState extends State<MenuMonitoring> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [widget.text, widget.detailText],
                 ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      isClick = !isClick;
-                    });
-                  },
-                  child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 7, horizontal: 7),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: isClick
-                              ? const LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: [
-                                    blueColor,
-                                    purpleColor,
-                                  ],
-                                )
-                              : const LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: [
-                                    darkgreyColor,
-                                    lightgreyColor,
-                                  ],
-                                )),
-                      child: Image.asset(
-                        "assets/icons/icononoff.png",
-                        scale: 30,
-                      )),
-                )
-                // Button( onTap: (){},image: widget.image) : Button( onTap: () {},image: widget.image)
+                Button(
+                    image: const AssetImage('assets/icons/icononoff.png'),
+                    isclick: isClick,
+                    onTap: () {
+                      isOn();
+                    }),
               ],
             )
           ],

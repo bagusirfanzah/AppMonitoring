@@ -1,10 +1,12 @@
 import 'package:belajar_flutter/screen/home_screen.dart';
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
+import 'package:belajar_flutter/widget/button.dart';
 // import 'package:belajar_flutter/widget/button.dart';
 import 'package:belajar_flutter/widget/detail_monitor.dart';
 import 'package:belajar_flutter/widget/monitor.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TemperatureScreen extends StatefulWidget {
   static const routeName = 'temperature_screen';
@@ -17,6 +19,22 @@ class TemperatureScreen extends StatefulWidget {
 
 class _TemperatureScreenState extends State<TemperatureScreen> {
   bool isClick = false;
+
+  void isOn() {
+    setState(() {
+      isClick = !isClick;
+    });
+  }
+
+  void setPreference() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool('isclick', isClick);
+  }
+
+  Future<bool> getOn() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getBool('isclick') ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +50,8 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                 children: [
                   InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                        Navigator.pushReplacementNamed(
+                            context, HomeScreen.routeName);
                       },
                       child:
                           Image.asset("assets/icons/iconback.png", scale: 15)),
@@ -62,39 +81,44 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                           fontWeight: FontWeight.normal)
                     ],
                   ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        isClick = !isClick;
-                      });
-                    },
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 7, horizontal: 7),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: isClick
-                                ? const LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      blueColor,
-                                      purpleColor,
-                                    ],
-                                  )
-                                : const LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      darkgreyColor,
-                                      lightgreyColor,
-                                    ],
-                                  )),
-                        child: Image.asset(
-                          "assets/icons/icononoff.png",
-                          scale: 25,
-                        )),
-                  )
+                  Button(
+                      image: const AssetImage('assets/icons/icononoff.png'),
+                     isclick: isClick,
+                      onTap: () {
+                        isOn();
+                      }),
+                      
+                  // InkWell(
+                  //   onTap: () {
+                  //     isOn();
+                  //   },
+                  //   child: Container(
+                  //       padding: const EdgeInsets.symmetric(
+                  //           vertical: 7, horizontal: 7),
+                  //       decoration: BoxDecoration(
+                  //           shape: BoxShape.circle,
+                  //           gradient: isclick
+                  //               ? const LinearGradient(
+                  //                   begin: Alignment.centerLeft,
+                  //                   end: Alignment.centerRight,
+                  //                   colors: [
+                  //                     blueColor,
+                  //                     purpleColor,
+                  //                   ],
+                  //                 )
+                  //               : const LinearGradient(
+                  //                   begin: Alignment.centerLeft,
+                  //                   end: Alignment.centerRight,
+                  //                   colors: [
+                  //                     darkgreyColor,
+                  //                     lightgreyColor,
+                  //                   ],
+                  //                 )),
+                  //       child: Image.asset(
+                  //         "assets/icons/icononoff.png",
+                  //         scale: 25,
+                  //       )),
+                  // )
                 ],
               ),
               const SizedBox(height: 80),
@@ -105,7 +129,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                 children: [
                   DetailMonitor(
                     isClick: isClick,
-                    text: "Temperature Status",
+                    text: "Temperature Status ",
                     textStatus: "Normal",
                   ),
                   DetailMonitor(

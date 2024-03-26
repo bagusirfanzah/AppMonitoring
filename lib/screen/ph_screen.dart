@@ -1,6 +1,7 @@
 import 'package:belajar_flutter/screen/home_screen.dart';
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
+import 'package:belajar_flutter/widget/button.dart';
 // import 'package:belajar_flutter/widget/button.dart';
 import 'package:belajar_flutter/widget/detail_monitor.dart';
 import 'package:belajar_flutter/widget/monitor.dart';
@@ -18,6 +19,12 @@ class PhScreen extends StatefulWidget {
 class _PhScreenState extends State<PhScreen> {
   bool isClick = false;
 
+  void isOn() {
+    setState(() {
+      isClick = !isClick;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +39,15 @@ class _PhScreenState extends State<PhScreen> {
                 children: [
                   InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                        Navigator.pushReplacementNamed(
+                            context, HomeScreen.routeName);
                       },
                       child:
                           Image.asset("assets/icons/iconback.png", scale: 15)),
                   InkWell(
                       onTap: () {},
-                      child: const Icon(Icons.refresh, color: whiteColor, size: 25))
+                      child: const Icon(Icons.refresh,
+                          color: whiteColor, size: 25))
                 ],
               ),
               const SizedBox(height: 20),
@@ -61,39 +70,45 @@ class _PhScreenState extends State<PhScreen> {
                           fontWeight: FontWeight.normal)
                     ],
                   ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        isClick = !isClick;
-                      });
-                    },
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 7, horizontal: 7),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: isClick
-                                ? const LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      blueColor,
-                                      purpleColor,
-                                    ],
-                                  )
-                                : const LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      darkgreyColor,
-                                      lightgreyColor,
-                                    ],
-                                  )),
-                        child: Image.asset(
-                          "assets/icons/icononoff.png",
-                          scale: 25,
-                        )),
-                  )
+                  Button(
+                      image: const AssetImage('assets/icons/icononoff.png'),
+                      isclick: isClick,
+                      onTap: () {
+                        isOn();
+                      }),
+                  // InkWell(
+                  //   onTap: () {
+                  //     setState(() {
+                  //       isClick = !isClick;
+                  //     });
+                  //   },
+                  //   child: Container(
+                  //       padding: const EdgeInsets.symmetric(
+                  //           vertical: 7, horizontal: 7),
+                  //       decoration: BoxDecoration(
+                  //           shape: BoxShape.circle,
+                  //           gradient: isClick
+                  //               ? const LinearGradient(
+                  //                   begin: Alignment.centerLeft,
+                  //                   end: Alignment.centerRight,
+                  //                   colors: [
+                  //                     blueColor,
+                  //                     purpleColor,
+                  //                   ],
+                  //                 )
+                  //               : const LinearGradient(
+                  //                   begin: Alignment.centerLeft,
+                  //                   end: Alignment.centerRight,
+                  //                   colors: [
+                  //                     darkgreyColor,
+                  //                     lightgreyColor,
+                  //                   ],
+                  //                 )),
+                  //       child: Image.asset(
+                  //         "assets/icons/icononoff.png",
+                  //         scale: 25,
+                  //       )),
+                  // )
                 ],
               ),
               const SizedBox(height: 80),

@@ -30,12 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.6
   font_awesome_flutter: ^10.5.0
   introduction_screen: ^3.1.11
   smooth_page_indicator: ^1.1.0
   sleek_circular_slider: ^2.0.1
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

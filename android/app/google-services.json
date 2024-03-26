@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "977083962678",
+    "firebase_url": "https://esp32-monitoring-c350e-default-rtdb.firebaseio.com",
+    "project_id": "esp32-monitoring-c350e",
+    "storage_bucket": "esp32-monitoring-c350e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977083962678:android:f49cb6ca547cbfee6dcf97",
+        "android_client_info": {
+          "package_name": "com.appmonitoring"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBY6Woontmo96UvuwDk7yO4u8IfDSUhp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,7 @@ import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
 import 'package:belajar_flutter/widget/button.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:belajar_flutter/widget/button.dart';
 
@@ -32,8 +33,17 @@ class _MenuMonitoringState extends State<MenuMonitoring> {
     });
   }
 
+  getBool() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool('isClick', isClick);
+  }
+
   @override
   Widget build(BuildContext context) {
+    saveBool() async {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.getBool('isClick');
+    }
     Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: widget.ontap,
@@ -91,7 +101,10 @@ class _MenuMonitoringState extends State<MenuMonitoring> {
                     image: const AssetImage('assets/icons/icononoff.png'),
                     isclick: isClick,
                     onTap: () {
-                      isOn();
+                      setState(() {
+                        isOn();
+                      });
+                      saveBool();
                     }),
               ],
             )

@@ -86,6 +86,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                      isclick: isClick,
                       onTap: () {
                         isOn();
+                        
                       }),
                       
                   // InkWell(

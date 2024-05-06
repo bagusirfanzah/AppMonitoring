@@ -1,10 +1,11 @@
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-class Monitor extends StatelessWidget {
-  const Monitor({
+class Monitor extends StatefulWidget {
+   Monitor({
     super.key,
     required this.isClick, 
     required this.textMonitor,
@@ -12,7 +13,14 @@ class Monitor extends StatelessWidget {
 
   final bool isClick;
   final String textMonitor;
+  final ref = FirebaseDatabase.instance.ref('ESP32_Device');
 
+  @override
+  State<Monitor> createState() => _MonitorState();
+  
+}
+
+class _MonitorState extends State<Monitor> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,7 +50,7 @@ class Monitor extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                      color: isClick ? blueColor : blackColor,
+                      color: widget.isClick ? blueColor : blackColor,
                       blurRadius: 100),
                 ],
                 color: darkgreyColor3,
@@ -56,7 +64,7 @@ class Monitor extends StatelessWidget {
                     customColors: CustomSliderColors(
                       trackColor: lightgreyColor,
                       dotColor: whiteColor,
-                      progressBarColors: isClick? <Color>[
+                      progressBarColors: widget.isClick? <Color>[
                         purpleColor,
                         blueColor,
                         purpleColor
@@ -96,7 +104,7 @@ class Monitor extends StatelessWidget {
                                   const EdgeInsets.only(left: 30),
                               child: AppText(
                                   text: "${percentage.toInt()}",
-                                  color: isClick
+                                  color: widget.isClick
                                       ? whiteColor
                                       : greyColor2,
                                   fontSize: 40,
@@ -106,7 +114,7 @@ class Monitor extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 35),
                               child: AppText(
-                                  text: textMonitor,
+                                  text: widget.textMonitor,
                                   color: greyColor2,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
@@ -120,7 +128,7 @@ class Monitor extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color:
-                                isClick ? Colors.green : Colors.red,
+                                widget.isClick ? Colors.green : Colors.red,
                           ),
                         )
                       ],

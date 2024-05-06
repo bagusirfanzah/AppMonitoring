@@ -2,11 +2,8 @@ import 'package:belajar_flutter/screen/home_screen.dart';
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
 import 'package:belajar_flutter/widget/button.dart';
-// import 'package:belajar_flutter/widget/button.dart';
-import 'package:belajar_flutter/widget/detail_monitor.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-// import 'package:belajar_flutter/widget/monitor.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
@@ -103,21 +100,18 @@ class _PhScreenState extends State<PhScreen> {
                           color: greyColor,
                         ),
                       ),
-                      Expanded(
-                        child: FutureBuilder(
-                            future: _fApp,
-                            builder: (context, snapshot) {
-                              if (snapshot.hasError) {
-                                return const Text('ERROR');
-                              } else if (snapshot.hasData) {
-                                return phLayout(isclick: isclick);
-                              } else {
-                                return const CircularProgressIndicator();
-                              }
-                            }),
-                      ),
-                    ]),
-                    Container(
+                      FutureBuilder(
+                          future: _fApp,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              return const Text('ERROR');
+                            } else if (snapshot.hasData) {
+                              return phLayout(isclick: isclick);
+                            } else {
+                              return const CircularProgressIndicator();
+                            }
+                          }),
+                       Container(
                       height: 4,
                       width: 10,
                       decoration: BoxDecoration(
@@ -125,6 +119,8 @@ class _PhScreenState extends State<PhScreen> {
                         color: greyColor,
                       ),
                     ),
+                    ]),
+                   
                   ],
                 ),
                 Container(
@@ -135,12 +131,9 @@ class _PhScreenState extends State<PhScreen> {
                     color: greyColor,
                   ),
                 ),
+                
               ],
             ),
-            // Monitor(
-            //   isClick: isClick,
-            //   textMonitor: "pH",
-            // ),
             // const SizedBox(height: 100),
             //     Row(
             //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,7 +156,7 @@ class _PhScreenState extends State<PhScreen> {
         ));
   }
 
-  Widget phLayout() {
+  Widget phLayout({required bool isclick}) {
     DatabaseReference dref =
         FirebaseDatabase.instance.ref('monitoring').child('Ph');
     dref.onValue.listen((event) {
@@ -172,7 +165,7 @@ class _PhScreenState extends State<PhScreen> {
       });
     });
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         boxShadow: [
@@ -182,7 +175,8 @@ class _PhScreenState extends State<PhScreen> {
         shape: BoxShape.circle,
       ),
       child: SleekCircularSlider(
-        initialValue: 0,
+         max: 20,
+        initialValue: double.parse(realtime),
         appearance: CircularSliderAppearance(
             startAngle: 90,
             size: 200,
@@ -201,11 +195,9 @@ class _PhScreenState extends State<PhScreen> {
               progressBarWidth: 12,
               handlerSize: 6,
             )),
-        onChange: (dref) {
-                  setState(() {
-                    realtime.toString();
-                  });
-                },
+        onChange: (realtime) {
+          realtime.toString();
+        },
         innerWidget: (double percentage) {
           return Container(
             margin: const EdgeInsets.all(25),
@@ -223,22 +215,19 @@ class _PhScreenState extends State<PhScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: AppText(
-                          text: realtime.toString(),
-                          color: isclick ? whiteColor : greyColor2,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    AppText(
+                        text: realtime,
+                        color: isclick ? whiteColor : greyColor2,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                     const SizedBox(width: 5),
                     const Padding(
-                      padding: EdgeInsets.only(bottom: 35),
+                      padding: EdgeInsets.only(bottom: 30),
                       child: Text(
                         'Ph',
                         style: TextStyle(
                             color: greyColor2,
-                            fontSize: 16,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold),
                       ),
                     ),

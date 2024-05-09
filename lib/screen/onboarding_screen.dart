@@ -6,8 +6,9 @@
 import 'package:belajar_flutter/screen/home_screen.dart';
 import 'package:belajar_flutter/utils/colors.dart';
 import 'package:belajar_flutter/widget/app_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   static const routeName = "/oboarding_screen";
@@ -19,12 +20,32 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class OnBoardingScreenState extends State<OnBoardingScreen> {
-//final PageController _controller = PageController();
-
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  ValueNotifier userCredential = ValueNotifier('');
   bool onLastPage = false;
+
+  Future<dynamic> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      if (googleUser != null) {}
+
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } on Exception catch (e) {
+      ('exception->$e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.sizeOf(context).width;
     return Scaffold(
         backgroundColor: blackColor,
         body: SafeArea(
@@ -55,7 +76,7 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
                 const Text(
                   "APP",
                   style: TextStyle(
-                      color: whiteColor,
+                      color: blueColor,
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
@@ -69,39 +90,131 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
                 const SizedBox(height: 15),
                 const Text(
                   "Aplikasi ini digunakan untuk memonitoring fermentasi kopi.",
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                       color: whiteColor,
-                      fontSize: 14,
+                      fontSize: 16,
                       fontWeight: FontWeight.w300),
                 ),
                 const Expanded(child: SizedBox()),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(
-                        context, HomeScreen.routeName);
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                        color: blueColor,
-                        gradient: const LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      blueColor,
-                      purpleColor,
-                    ],),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
-                      child: AppText(
-                          text: "Lanjut",
-                          color: whiteColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                )
+                ValueListenableBuilder(
+                    valueListenable: userCredential,
+                    builder: (context, value, child) {
+                      return (userCredential.value == '' ||
+                              userCredential.value == null)
+                          ? GestureDetector(
+                              onTap: () async {
+                                userCredential.value = await signInWithGoogle();
+                                // if (userCredential.value != null)
+                                //   print(userCredential.value.user!.email);
+                              },
+                              child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 12),
+                                  decoration: BoxDecoration(
+                                      color: blueColor,
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                        colors: [
+                                          blueColor,
+                                          purpleColor,
+                                        ],
+                                      ),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: const Center(
+                                    child: AppText(
+                                        text: "Masuk",
+                                        color: whiteColor,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal),
+                                  )))
+                          : Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                  
+                                    children: [
+                                      const AppText(
+                                          text: "Welcome, ",
+                                          color: whiteColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                      Text(
+                                        userCredential.value.user!.displayName
+                                            .toString(),
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
+                                       SizedBox(
+                                        width: size/3.4,
+                                      ),
+                                      // Text(userCredential.value.user!.email
+                                      //     .toString()),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .pushReplacement(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const HomeScreen()));
+                                        },
+                                        child: Container(
+                                            padding:
+                                                const EdgeInsets.symmetric(
+                                                    vertical: 8,
+                                                    horizontal: 16),
+                                            decoration: BoxDecoration(
+                                                color: blueColor,
+                                                gradient:
+                                                    const LinearGradient(
+                                                  begin:
+                                                      Alignment.centerLeft,
+                                                  end:
+                                                      Alignment.centerRight,
+                                                  colors: [
+                                                    blueColor,
+                                                    purpleColor,
+                                                  ],
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10)),
+                                            child: const Icon(
+                                              Icons.arrow_circle_right,
+                                              color: Colors.white,
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                    ],
+                                  )
+                                  // Container(
+                                  //   clipBehavior: Clip.antiAlias,
+                                  //   decoration: BoxDecoration(
+                                  //       shape: BoxShape.circle,
+                                  //       border: Border.all(
+                                  //           width: 1.5, color: Colors.black54)),
+                                  //   child: Image.network(
+                                  //       userCredential.value.user!.photoURL.toString()),
+                                  // ),
+                                  // const SizedBox(
+                                  //   height: 20,
+                                  // ),
+
+                                  // ElevatedButton(
+                                  //     onPressed: () async {
+                                  //       bool result = await signOutFromGoogle();
+                                  //       if (result) userCredential.value = '';
+                                  //     },
+                                  //     child: const Text('Logout'))
+                                ],
+                              ),
+                            );
+                    }),
               ],
             ),
           ),
